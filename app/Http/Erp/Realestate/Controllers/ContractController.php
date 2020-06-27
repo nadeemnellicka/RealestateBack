@@ -20,12 +20,12 @@ class ContractController extends Controller
             }
             $contract->create($request->all());
             if($contract->save()){
-                $this->makeRentTracker($contract);
+                $this->makeRentTracker($contract);                              
             }
     }
 
-    public function List(Request $request){
-        $properties=RealContracts::all();
+    public function List(Request $request){                                                                                                                             
+        $properties=RealContracts::with('property','unit')->get();           
         return response()->json(['data'=>$properties]); 
     }
 
@@ -66,9 +66,6 @@ class ContractController extends Controller
                 }
             }
         }
-
-
-
     }
   
 }

@@ -22,25 +22,29 @@ Route::prefix('/user')->middleware('auth:api')->group( function() {
 Route::get('/details','LoginController@details');
 Route::post('/logout','LoginController@logout');
 });
-Route::prefix('/masters')->group( function() {
+Route::prefix('/masters')->middleware('auth:api')->group( function() {
 Route::get('/types','MasterController@types');
 Route::post('/create','MasterController@create');
 Route::get('/list/{type}','MasterController@list');
 });
-Route::prefix('/properties')->group( function() {
+Route::prefix('/properties')->middleware('auth:api')->group( function() {
 Route::post('/create','PropertyController@create');
 Route::get('/list','PropertyController@list');
+Route::put('/update','PropertyController@update');
 });
-Route::prefix('/units')->group( function() {
+Route::prefix('/units')->middleware('auth:api')->group( function() {
 Route::post('/create','UnitController@create');
+Route::put('/update','UnitController@update');
 Route::get('/list','UnitController@list');
 });
-Route::prefix('/tenants')->group( function() {
+Route::prefix('/tenants')->middleware('auth:api')->group( function() {
 Route::post('/create','TenantController@create');
+Route::put('/update','TenantController@update');
 Route::get('/list','TenantController@list');
 });
-Route::prefix('/contracts')->group( function() {
+Route::prefix('/contracts')->middleware('auth:api')->group( function() {
 Route::post('/create','ContractController@create');
+Route::put('/create','ContractController@create');
 Route::get('/list','ContractController@list');
 });
 
