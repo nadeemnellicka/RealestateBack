@@ -12,11 +12,15 @@ class RealContracts extends Model
     protected $fillable = ['property_id','unit_id','tenant_id','start_date','end_date','rent','deposit'];
     public function property()
     {
-    	return $this->hasMany(RealProperties::class, 'id', 'property_id');
+    	return $this->hasOne(RealProperties::class, 'id', 'property_id');
     }
     public function unit()
     {
-    	return $this->hasMany(RealUnits::class, 'id', 'unit_id');
+    	return $this->hasOne(RealUnits::class, 'id', 'unit_id');
+    }    
+    public function tenant()
+    {
+        return $this->hasOne(RealTenants::class, 'id', 'tenant_id');
     }																																			
     public static function boot() {
         parent::boot();        

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class RealMasters extends Model
 {
    public function types(){
-    	return $this->hasMany(RealMasters::class);
+    	return $this->hasOne(RealMasters::class);
     }
 }

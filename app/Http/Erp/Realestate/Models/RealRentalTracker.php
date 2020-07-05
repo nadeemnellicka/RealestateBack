@@ -10,8 +10,13 @@ class RealRentalTracker extends Model
 {
     protected $guarded = [];
 
-    public function contracts()
+    public function contract()
     {
-    	return $this->hasOne(RealContracts::class, 'id', 'contract_id');
+    	return $this->hasOne(RealContracts::class, 'id', 'contract_id')->with('unit','tenant')->with('property');
     }
+
+
+
+
+
 }
