@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/test')->group( function() {
 Route::post('/print','testController@index');
+Route::post('/default','InstallController@index');
 });

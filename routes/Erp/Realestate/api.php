@@ -48,8 +48,13 @@ Route::put('/create','ContractController@create');
 Route::get('/list','ContractController@list');
 });
 
-Route::prefix('/tracker')->group( function() {
+Route::prefix('/tracker')->middleware('auth:api')->group( function() {
 Route::get('/list','RentalTrackerController@list');
+Route::post('/collection','RentalTrackerController@collection');
+});
+Route::prefix('/report')->group( function() {
+Route::get('/property','ReportController@propertyReport');
+Route::get('/unit/{unit_id}','ReportController@unitReport');
 });
 
 

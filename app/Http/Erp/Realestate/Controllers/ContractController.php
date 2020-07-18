@@ -13,11 +13,20 @@ class ContractController extends Controller
 {
 
     public function create(Request $request){
-            if(isset($request->id) && !empty($request->id)){
-                $contract = RealContracts::find($request->id);
-            }else{
+            // if(isset($request->id) && !empty($request->id)){
+            //     $contract = RealContracts::find($request->id);
+            // }else{
                 $contract= new RealContracts;
-            }
+            // }
+            // dd($request->property_id);
+            $contract->property_id=$request->property_id;
+            $contract->unit_id=$request->unit_id;
+            $contract->tenant_id=$request->tenant_id;
+            $contract->tenant_id=$request->tenant_id;
+            $contract->start_date=$request->start_date;
+            $contract->end_date=$request->end_date;
+            $contract->rent=$request->rent;
+            $contract->deposit=$request->deposit;
             $contract->create($request->all());
             if($contract->save()){
                 $this->makeRentTracker($contract);                              
@@ -52,6 +61,7 @@ class ContractController extends Controller
                  $tracker->amount=($firstEntry)?$firstMonthRent:$contract->rent;
                  $tracker->start_date=($firstEntry)?$firstRentStartDate:$startDate;
                  $tracker->end_date= $endDate;
+                 $tracker->amount_paid= 0;
                  if($today->year<$y || ($today->year==$y && $today->month<$m)){
                     $tracker->status='pending' ;
                  }elseif($today->year==$y && $today->month==$m){
