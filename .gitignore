@@ -13,3 +13,5 @@ storage/*.key
 .env
 Homestead.yaml
 Homestead.json
+deploy-log.txt
+
